@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -30,7 +31,12 @@ public class CarController {
         List<Car> cars = carRepository.findAll();
         return ResponseEntity.ok(cars);
     }
+    @GetMapping("/{id}")
+    public Optional<Car> getCar(@PathVariable Long id){
+        
+       return carRepository.findById(id);
 
+    }
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteAllCars() {
         carRepository.deleteAll();
